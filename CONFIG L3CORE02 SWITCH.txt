@@ -1,0 +1,28 @@
+en
+configure terminal
+hostname CORE-L3-02
+ip routing
+
+
+interface GigabitEthernet0/1
+no switchport
+ip address 192.168.255.2 255.255.255.0
+no shutdown
+exit
+
+
+ip route 0.0.0.0 0.0.0.0 192.168.255.1
+
+
+vlan 90
+name MARKETING
+exit
+vlan 100
+name DISENO
+exit
+vlan 110
+name GERENCIA
+exit
+
+end
+write

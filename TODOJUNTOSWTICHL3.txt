@@ -1,0 +1,207 @@
+en
+configure terminal
+hostname CORE-L3-01
+ip routing
+
+
+interface GigabitEthernet0/2
+no switchport 
+ip address 192.168.255.1 255.255.255.0
+no shutdown
+exit
+ip route 0.0.0.0 0.0.0.0 192.168.255.2 
+
+
+
+
+vlan 10
+name SERVICIOS_IT
+exit
+interface vlan 10
+ip address 192.168.10.1 255.255.255.0
+no shutdown
+exit
+
+
+vlan 20
+name LOGISTICA
+exit
+interface vlan 20
+ip address 192.168.20.1 255.255.255.0
+ip helper-address 192.168.10.4
+no shutdown
+exit
+
+
+vlan 30
+name PLANEACION_PROYECTOS
+exit
+interface vlan 30
+ip address 192.168.30.1 255.255.255.0
+ip helper-address 192.168.10.4
+no shutdown
+exit
+
+
+vlan 40
+name GESTION_Y_CONTROL
+exit
+interface vlan 40
+ip address 192.168.40.1 255.255.255.0
+ip helper-address 192.168.10.4
+no shutdown
+exit
+
+vlan 50
+name GESTION_CONOCIMIENTO
+exit
+interface vlan 50
+ip address 192.168.50.1 255.255.255.0
+ip helper-address 192.168.10.4
+no shutdown
+exit
+
+
+vlan 60
+name CONTABILIDAD
+exit
+interface vlan 60
+ip address 192.168.60.1 255.255.255.0
+ip helper-address 192.168.10.4
+no shutdown
+exit
+
+
+vlan 70
+name JURIDICO
+exit
+interface vlan 70
+ip address 192.168.70.1 255.255.255.0
+ip helper-address 192.168.10.4
+no shutdown
+exit
+
+
+vlan 80
+name TESORERIA
+exit
+interface vlan 80
+ip address 192.168.80.1 255.255.255.0
+ip helper-address 192.168.10.4
+no shutdown
+exit
+
+
+vlan 90
+name MARKETING
+exit
+interface vlan 90
+ip address 192.168.90.1 255.255.255.0
+ip helper-address 192.168.10.4
+no shutdown
+exit
+
+
+vlan 100
+name DISENO
+exit
+interface vlan 100
+ip address 192.168.100.1 255.255.255.0
+ip helper-address 192.168.10.4
+no shutdown
+exit
+
+
+vlan 110
+name GERENCIA
+exit
+interface vlan 110
+ip address 192.168.110.1 255.255.255.0
+ip helper-address 192.168.10.4
+no shutdown
+exit
+
+
+ip access-list extended BLOQUEO_PANEL
+deny tcp 192.168.60.0 0.0.0.255 host 192.168.10.20 eq 80 
+deny tcp 192.168.60.0 0.0.0.255 host 192.168.10.20 eq 443
+deny tcp 192.168.70.0 0.0.0.255 host 192.168.10.20 eq 80 
+deny tcp 192.168.70.0 0.0.0.255 host 192.168.10.20 eq 443
+deny tcp 192.168.110.0 0.0.0.255 host 192.168.10.20 eq 80 
+deny tcp 192.168.110.0 0.0.0.255 host 192.168.10.20 eq 443
+permit ip any any
+exit
+
+
+interface vlan 10
+ip access-group BLOQUEO_PANEL in
+exit
+
+
+
+ip access-list extended BLOQUEO_RRSS_FINAL
+permit tcp 192.168.90.0 0.0.0.255 host 57.144.206.1 eq 80
+permit tcp 192.168.90.0 0.0.0.255 host 57.144.206.1 eq 443
+permit tcp 192.168.90.0 0.0.0.255 host 57.144.206.34 eq 80
+permit tcp 192.168.90.0 0.0.0.255 host 57.144.206.34 eq 443
+permit tcp 192.168.90.0 0.0.0.255 host 172.66.0.227 eq 80
+permit tcp 192.168.90.0 0.0.0.255 host 172.66.0.227 eq 443
+permit tcp 192.168.90.0 0.0.0.255 host 2.23.164.179 eq 80
+permit tcp 192.168.90.0 0.0.0.255 host 2.23.164.179 eq 443
+
+deny tcp 192.168.0.0 0.0.255.255 host 57.144.206.1 eq 80
+deny tcp 192.168.0.0 0.0.255.255 host 57.144.206.34 eq 80
+deny tcp 192.168.0.0 0.0.255.255 host 172.66.0.227 eq 80
+deny tcp 192.168.0.0 0.0.255.255 host 2.23.164.179 eq 80
+
+deny tcp 192.168.0.0 0.0.255.255 host 151.101.129.140 eq 80
+deny tcp 192.168.0.0 0.0.255.255 host 64.233.190.91 eq 80
+deny tcp 192.168.0.0 0.0.255.255 host 3.162.185.32 eq 80
+deny tcp 192.168.0.0 0.0.255.255 host 52.42.212.97 eq 80
+
+permit ip any any
+exit
+
+
+
+
+interface vlan 10
+ip access-group BLOQUEO_PANEL in
+exit
+
+interface vlan 10
+ip access-group BLOQUEO_RRSS_FINAL out
+exit
+interface vlan 20
+ip access-group BLOQUEO_RRSS_FINAL out
+exit
+interface vlan 30
+ip access-group BLOQUEO_RRSS_FINAL out
+exit
+interface vlan 40
+ip access-group BLOQUEO_RRSS_FINAL out
+exit
+interface vlan 50
+ip access-group BLOQUEO_RRSS_FINAL out
+exit
+interface vlan 60
+ip access-group BLOQUEO_RRSS_FINAL out
+exit
+interface vlan 70
+ip access-group BLOQUEO_RRSS_FINAL out
+exit
+interface vlan 80
+ip access-group BLOQUEO_RRSS_FINAL out
+exit
+interface vlan 90
+ip access-group BLOQUEO_RRSS_FINAL out
+exit
+interface vlan 100
+ip access-group BLOQUEO_RRSS_FINAL out
+exit
+interface vlan 110
+ip access-group BLOQUEO_RRSS_FINAL out
+exit
+
+end
+write

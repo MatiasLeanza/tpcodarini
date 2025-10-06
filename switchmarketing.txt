@@ -1,0 +1,61 @@
+en
+configure terminal
+hostname SW-MARKETING
+
+
+interface GigabitEthernet0/1
+switchport mode trunk
+switchport trunk allowed vlan 10,90,100,110
+no shutdown
+exit
+
+vlan 10
+name SERVICIOS_IT
+exit
+vlan 90
+name MARKETING
+exit
+vlan 100
+name DISENO
+exit
+vlan 110
+name GERENCIA
+exit
+
+
+
+
+interface range FastEthernet0/1 - 6
+ switchport mode access
+ switchport access vlan 90
+ no shutdown
+ exit
+
+
+interface range FastEthernet0/7 - 10
+ switchport mode access
+ switchport access vlan 100
+ no shutdown
+ exit
+
+
+interface range FastEthernet0/11 - 15 
+ switchport mode access
+ switchport access vlan 110
+ no shutdown
+ exit
+ 
+interface FastEthernet0/16 
+ switchport mode access
+ switchport access vlan 10
+ no shutdown
+ exit
+ 
+interface range FastEthernet0/17 - 18
+ switchport mode access
+ switchport access vlan 110
+ no shutdown
+ exit
+
+end
+write

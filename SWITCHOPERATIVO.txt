@@ -1,0 +1,57 @@
+en
+configure terminal
+hostname SW-OPERATIVA
+
+
+interface GigabitEthernet0/2
+switchport mode trunk
+switchport trunk allowed vlan 20,30,40,50
+no shutdown
+exit
+
+
+vlan 20
+name LOGISTICA
+exit
+vlan 30
+name PLANEACION_PROYECTOS
+exit
+vlan 40
+name GESTION_Y_CONTROL
+exit
+vlan 50
+name GESTION_CONOCIMIENTO
+exit
+
+
+
+
+interface range FastEthernet0/1 - 4 
+switchport mode access
+switchport access vlan 20
+ no shutdown
+exit
+
+
+interface range FastEthernet0/5 - 8 
+switchport mode access
+switchport access vlan 30
+no shutdown
+ exit
+
+
+interface range FastEthernet0/9 - 12 
+switchport mode access
+switchport access vlan 40
+no shutdown
+exit
+
+
+interface range FastEthernet0/13 - 16
+switchport mode access
+switchport access vlan 50
+no shutdown
+exit
+
+end
+write

@@ -1,0 +1,15 @@
+PRIMERO PONGO EL SV, LE DOY UNA IP ESTATICA IPV4, DEFAULT GATEWAY, SUBNET MASK Y DNS
+LUEGO CONFIGUTO LOS SERVICIOS DEL SERVIDOR: HTTP/HTTPS, DHCP, DNS, EMAIL Y FTP
+
+armo el esquema con las pcs, impresoras, switches, etc, y conecto todo, verifico que el dhcp funcione correctamente con las pcs, 
+las laptops van a ir por wifi
+en los routers
+
+
+las conexiones entre switches o svs o dispositivos que manejen alto trafico de red, se trata de usar conexiones Gigabit por que son mas rapidas
+y para las pcs o otros dispositivos se usa fast ethernet
+
+despues paso a configurar los routers, poniendoles seguridads wpa2 personal y red, para conectar lo inalambrico, en este caso las laptops
+una vez configurado los routers, configuro los switchesL3, creo las vlans y creo los accesos y troncales,
+creadas las vlans, creo las restricciones dentro del switch, hacia el panel de control y las ips de los sitios web (para conseguir las ips de los sitios puse ping y el dominio
+en el cmd), terminado la configuracion del switch L3 principal llamado COREL3-01, sigo con el COREL302 y luego con los 3 switches L2 que conectan los dispositivos.

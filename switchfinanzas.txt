@@ -1,0 +1,47 @@
+en
+configure terminal
+hostname SW-FINANZAS
+
+
+interface FastEthernet0/24
+ switchport mode trunk
+ switchport trunk allowed vlan 60,70,80
+ no shutdown
+ exit
+
+
+vlan 60
+name CONTABILIDAD
+exit
+vlan 70
+name JURIDICO
+exit
+vlan 80
+name TESORERIA
+exit
+
+
+
+
+interface range FastEthernet0/1 - 4
+switchport mode access
+switchport access vlan 60
+no shutdown
+exit
+
+
+interface range FastEthernet0/5 - 7
+switchport mode access
+switchport access vlan 70
+no shutdown
+exit
+
+
+interface range FastEthernet0/8 - 11
+switchport mode access
+switchport access vlan 80
+no shutdown
+exit
+ 
+end
+write
